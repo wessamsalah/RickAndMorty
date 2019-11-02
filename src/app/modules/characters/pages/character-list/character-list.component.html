@@ -1,0 +1,37 @@
+<section class="section">
+    <div class="section-container">
+      <article class="article-box" *ngFor="let character of pagedData.results | paginate: { id: 'server', itemsPerPage: count, currentPage: page, totalItems: total }">
+        <div class="card-header">
+          <div class="card-image">
+            <img width="300" alt="Angular Logo" src="{{character.image}}">
+          </div>
+          <div class="character-card">
+            <h2>{{character.name}}</h2>
+            <p> {{character.species}} </p>
+          </div>
+        </div>
+
+        <div class="card-info">
+          <div>
+            <h4>Location</h4>
+            <character-location [location]=character.location></character-location>
+          </div>
+          <div>
+            <h4>Origin</h4>
+            <character-location [location]=character.origin></character-location>
+          </div>
+          <div>
+            <h4>episode</h4>
+            <input type="button" (click)="getEpisodes(character.id)" value="show"/>
+          </div>
+        </div>
+
+      </article>
+    </div>
+  </section>
+
+  <!-- Episode : <button (click)="getEpisodes(character.id)">show</button> -->
+
+<div class="paging" >
+  <pagination-controls (pageChange)="onPageChange($event)" id="server"></pagination-controls>
+</div>
